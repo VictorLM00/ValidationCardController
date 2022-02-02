@@ -1,16 +1,5 @@
 package com.ejemplos.spring.cucumber.glue;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import com.ejemplos.spring.controller.CardController;
-import com.ejemplos.spring.model.Card;
-
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
