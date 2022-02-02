@@ -48,7 +48,7 @@ public class CardController {
 			return "form1";
 		}
 
-		model.addAttribute("success", "Su tarjeta es correcta , la compra se ha realicado con éxito.");
+		model.addAttribute("success", "Su tarjeta es correcta , la compra se ha realizado con éxito.");
 		return "resumen";
 	}
 	
