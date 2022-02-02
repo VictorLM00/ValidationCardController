@@ -2,12 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../static/css/style.css">
-<title>Pasarela de pago</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<title>Pasarela de pago</title>
+	<!-- <script src="@{/functions/functions.js}"/>-->
 </head>
+<script>
+
+	function ValidarNumero(numero) {
+  		if (numero.value.length < 4 || numero.value.length > 4) {
+   			 alert('Error: solo permitido: 4 caracteres');
+   			 numero.focus();
+   			 numero.select();
+		
+  		}
+}
+	
+
+</script>
 
 <body>
 	<h1>Pasarela de pago</h1>
@@ -15,47 +29,35 @@
 
 	<div class="contenedor">
 		<div class="formulario">
-			<form th:action="@{/}" th:object="${card}" method="post">
+			<form th:action="@{/}" th:object="${card}" method="post" onsubmit="submit()">
 				<table>
 					<tr>
-						<td><label for="num1">Números:</label></td>
-						<td><input type="number" th:field="*{num1}" /></td>
-						<td th:if="${#fields.hasErrors('num1')}" th:errors="*{num1}">num1
-							Error</td>
+						<td>
+							<label for="num1">Tarjeta:</label>
+							<input name="numero1" type="number" th:field="*{num1}" onchange="return ValidarNumero(this)"/>
+							<input name="numero2" type="number" th:field="*{num2}" onchange="return ValidarNumero(this)"/>
+							<input name="numero3" type="number" th:field="*{num3}" onchange="return ValidarNumero(this)"/>
+							<input name="numero4" type="number" th:field="*{num4}" onchange="return ValidarNumero(this)"/>
+						</td>
 					</tr>
 					<tr>
-						<td><label for="num2">Números:</label></td>
-						<td><input type="number" th:field="*{num2}" /></td>
-						<td th:if="${#fields.hasErrors('num2')}" th:errors="*{num2}">num2
-							Error</td>
+						<td>
+							<label for="month">Mes de caducidad:</label>
+							<input type="number" th:field="*{month}" />
+							<label th:if="${#fields.hasErrors('month')}" th:errors="*{month}">month Error</label>
+						</td>
 					</tr>
 					<tr>
-						<td><label for="num3">Números:</label></td>
-						<td><input type="number" th:field="*{num3}" /></td>
-						<td th:if="${#fields.hasErrors('num3')}" th:errors="*{num3}">num3
-							Error</td>
-					</tr>
-					<tr>
-						<td><label for="num4">Números:</label></td>
-						<td><input type="number" th:field="*{num4}" /></td>
-						<td th:if="${#fields.hasErrors('num4')}" th:errors="*{num4}">num4
-							Error</td>
-					</tr>
-					<tr>
-						<td><label for="month">Mes de caducidad:</label></td>
-						<td><input type="number" th:field="*{month}" /></td>
-						<td th:if="${#fields.hasErrors('month')}" th:errors="*{month}">month
-							Error</td>
-					</tr>
-					<tr>
-						<td><label for="year">Año de caducidad:</label></td>
-						<td><input type="number" th:field="*{year}" /></td>
-						<td th:if="${#fields.hasErrors('year')}" th:errors="*{year}">year
-							Error</td>
+						<td>
+							<label for="year">Año de caducidad:</label>
+							<input type="number" th:field="*{year}" />
+							<label th:if="${#fields.hasErrors('year')}" th:errors="*{year}">year Error</label>
+						</td>
 					</tr>
 					<tr>
 						<td><button type="submit" value="registrar">Enviar</button></td>
 					</tr>
+					
 				</table>
 			</form>
 		</div>

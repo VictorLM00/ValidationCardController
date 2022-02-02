@@ -1,8 +1,7 @@
 package com.ejemplos.spring.model;
 
 import java.io.Serializable;
-import java.sql.Date;
-
+import javax.validation.Valid;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -11,160 +10,55 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import lombok.Data;
-
+import org.springframework.web.bind.annotation.RequestBody;
 
 public class Card implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
-	@Min(value= 999) @Max(value = 10000) @NotNull
+    
+	@Min(value= 1000) @Max(value = 9999) @NotNull
 	private Integer num1;
 	
-	@Min(value= 999) @Max(value = 10000) @NotNull
+	@Min(value= 1000) @Max(value = 9999) @NotNull
 	private Integer num2;
 	
-	@Min(value= 999) @Max(value = 10000) @NotNull
+	@Min(value= 1000) @Max(value = 9999) @NotNull
 	private Integer num3;
 	
-	@Min(value= 999) @Max(value = 10000) @NotNull
+	@Min(value= 1000) @Max(value = 9999) @NotNull
 	private Integer num4;
 	
-	@Min(value= 02) @Max(value=12) @NotNull
+	@Min(value= 01) @Max(value=12) @NotNull
 	private Integer month;
-	@Min(value= 22) @Max(value=99) @NotNull
+	@Min(value = 22) @Max(value=24) @NotNull
 	private Integer year;
 	
+
+	public Integer getNum1() {return num1;}
 	
+	public void setNum1(Integer num1) {	this.num1 = num1;}
 
+	public Integer getNum2() {return num2;}
+
+	public void setNum2(Integer num2) {this.num2 = num2;}
+
+	public Integer getNum3() {return num3;}
 	
+	public void setNum3(Integer num3) {this.num3 = num3;}
 
+	public Integer getNum4() {return num4;}
+
+	public void setNum4(Integer num4) {this.num4 = num4;}
+
+	public Integer getMonth() {return month;}
+
+	public void setMonth(Integer month) {this.month = month;}
+
+	public Integer getYear() {return year;}
+
+	public void setYear(Integer year) {this.year = year;}
 	
-
-
-	public Integer getNum1() {
-		return num1;
-	}
-
-
-
-
-
-
-	public void setNum1(Integer num1) {
-		this.num1 = num1;
-	}
-
-
-
-
-
-
-	public Integer getNum2() {
-		return num2;
-	}
-
-
-
-
-
-
-	public void setNum2(Integer num2) {
-		this.num2 = num2;
-	}
-
-
-
-
-
-
-	public Integer getNum3() {
-		return num3;
-	}
-
-
-
-
-
-
-	public void setNum3(Integer num3) {
-		this.num3 = num3;
-	}
-
-
-
-
-
-
-	public Integer getNum4() {
-		return num4;
-	}
-
-
-
-
-
-
-	public void setNum4(Integer num4) {
-		this.num4 = num4;
-	}
-
-
-
-	
-
-
-
-
-
-
-
-
-	public Integer getMonth() {
-		return month;
-	}
-
-
-
-
-
-
-	public void setMonth(Integer month) {
-		this.month = month;
-	}
-
-
-
-
-
-
-	public Integer getYear() {
-		return year;
-	}
-
-
-
-
-
-
-	public void setYear(Integer year) {
-		this.year = year;
-	}
-
-
-
-
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
-
-
-
+	public static long getSerialversionuid() {return serialVersionUID;}
 
 	@Override
 	public String toString() {
