@@ -1,15 +1,8 @@
 package com.ejemplos.spring.controller;
 
-import java.net.URI;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
-
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -18,12 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ejemplos.spring.model.Card;
-
-
-
 
 @RestController
 @Validated
@@ -57,11 +46,6 @@ public class CardController {
 	public ResponseEntity<?> validateCard(@Valid @RequestBody Card card) {
 		boolean validado = true;
 		String auxNum = "";
-		/*
-		Date dt = new Date(System.currentTimeMillis());
-        ZoneId timeZone = ZoneId.systemDefault();
-        LocalDate getLocalDate = dt.toInstant().atZone(timeZone).toLocalDate();
-        */
 		
 		auxNum = card.getNum1() + "";
 		if ((auxNum.length() < 4 || auxNum.length() > 4) && validado) {
@@ -86,8 +70,6 @@ public class CardController {
 		if((card.getMonth() > 12 || card.getMonth() < 1) && validado) {
 			validado = false;
 		}
-		
-        //yeah =  getLocalDate.getYear() + 2;
        
         //Tolera tarjeta que caducan dos años posterior, pero no tolera ninguna del año inferior a la actual
         if((card.getYear() <  22 || card.getYear() > 24) && validado) {

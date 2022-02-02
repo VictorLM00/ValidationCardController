@@ -13,7 +13,7 @@ import io.cucumber.spring.CucumberContextConfiguration;
 @SpringBootTest(classes = {ValidationCardDockerApplication.class, CucumberIntegrationTest.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(classes = ValidationCardDockerApplication.class, loader = SpringBootContextLoader.class)
 
-@CucumberOptions(plugin = {"pretty"}, tags = "", features = "src/main/resources/card.feature")
+@CucumberOptions(plugin = {"pretty"}, tags = "", features = "/src/main/resources/card.feature")
 public class CucumberIntegrationTest {
 	// implementation executePost
 }
