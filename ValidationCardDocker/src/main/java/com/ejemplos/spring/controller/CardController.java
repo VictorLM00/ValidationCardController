@@ -1,7 +1,13 @@
 package com.ejemplos.spring.controller;
 
+import java.net.URI;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -10,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ejemplos.spring.model.Card;
 
@@ -40,6 +47,59 @@ public class CardController {
 
 		model.addAttribute("success", "Su tarjeta es correcta , la compra se ha realicado con éxito.");
 		return "resumen";
+	}
+	
+	public ResponseEntity<?> validateCard(@Valid @RequestBody Card card) {
+		boolean validado = true;
+		String auxNum = "";
+		/*
+		Date dt = new Date(System.currentTimeMillis());
+        ZoneId timeZone = ZoneId.systemDefault();
+        LocalDate getLocalDate = dt.toInstant().atZone(timeZone).toLocalDate();
+        */
+	
+		int yeah = 0;
+		
+		auxNum = card.getNum1() + "";
+		if ((auxNum.length() < 4 || auxNum.length() > 4) && validado) {
+			validado = false;
+		}
+		
+		auxNum = card.getNum2() + "";
+		if ((auxNum.length() < 4 || auxNum.length() > 4) && validado) {
+			validado = false;
+		}
+		
+		auxNum = card.getNum3() + "";
+		if ((auxNum.length() < 4 || auxNum.length() > 4) && validado) {
+			validado = false;
+		}
+		
+		auxNum = card.getNum4() + "";
+		if ((auxNum.length() < 4 || auxNum.length() > 4) && validado) {
+			validado = false;
+		}
+		
+		if((card.getMonth() > 12 || card.getMonth() < 1) && validado) {
+			validado = false;
+		}
+		
+        //yeah =  getLocalDate.getYear() + 2;
+       
+        //Tolera tarjeta que caducan dos años posterior, pero no tolera ninguna del año inferior a la actual
+        if((card.getYear() <  22 || card.getYear() > 24) && validado) {
+        	validado = false;
+        }
+        
+        if(!validado) {
+        	
+    		return (ResponseEntity<?>) ResponseEntity.badRequest();
+        }
+        	
+        else {
+        	return ResponseEntity.ok("Card Validated success\n" + card);
+        }
+		
 	}
 	
 
