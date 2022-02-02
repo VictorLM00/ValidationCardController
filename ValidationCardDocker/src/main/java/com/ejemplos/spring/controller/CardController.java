@@ -12,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ejemplos.spring.model.Card;
@@ -23,8 +25,9 @@ import com.ejemplos.spring.model.Card;
 
 
 
-@Controller
-@RequestMapping("/")
+@RestController
+@Validated
+@RequestMapping("/card")
 public class CardController {
 	
 	@GetMapping
@@ -49,6 +52,8 @@ public class CardController {
 		return "resumen";
 	}
 	
+	
+	@PostMapping("/validate")
 	public ResponseEntity<?> validateCard(@Valid @RequestBody Card card) {
 		boolean validado = true;
 		String auxNum = "";
@@ -57,8 +62,6 @@ public class CardController {
         ZoneId timeZone = ZoneId.systemDefault();
         LocalDate getLocalDate = dt.toInstant().atZone(timeZone).toLocalDate();
         */
-	
-		int yeah = 0;
 		
 		auxNum = card.getNum1() + "";
 		if ((auxNum.length() < 4 || auxNum.length() > 4) && validado) {
