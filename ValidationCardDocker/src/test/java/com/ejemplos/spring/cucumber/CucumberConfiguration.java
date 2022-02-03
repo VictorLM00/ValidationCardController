@@ -1,15 +1,16 @@
 package com.ejemplos.spring.cucumber;
 
-import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootContextLoader;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
+import com.ejemplos.spring.ValidationCardDockerApplication;
 
-//To configure and run Cucumber
+import io.cucumber.spring.CucumberContextConfiguration;
 
-@RunWith(Cucumber.class) // ejecutar pruebas de Cucumber con JUnit
-//especificamos la ubicación del archivo Gherkin
-@CucumberOptions(features = "src/test/resources", glue = "classpath:com.ejemplos.spring.cucumber", plugin = { "pretty", "json:target/cucumber-report.json" }) 
+@CucumberContextConfiguration
+@SpringBootTest(classes = ValidationCardDockerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@ContextConfiguration(classes = ValidationCardDockerApplication.class, loader = SpringBootContextLoader.class)
 public class CucumberConfiguration {
 
 }
