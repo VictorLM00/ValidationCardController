@@ -9,7 +9,7 @@ import com.ejemplos.spring.ValidationCardDockerApplication;
 import io.cucumber.spring.CucumberContextConfiguration;
 
 @CucumberContextConfiguration
-@SpringBootTest(classes = ValidationCardDockerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = ValidationCardDockerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(classes = ValidationCardDockerApplication.class, loader = SpringBootContextLoader.class)
 public class CucumberConfiguration {
 
